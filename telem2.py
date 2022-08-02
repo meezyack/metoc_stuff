@@ -33,10 +33,11 @@ ser = serial.Serial(
 # Setup MAVLink to connect on udp 127.0.0.1:14550
 try:
     conn = mavutil.mavlink_connection("udp:127.0.0.1:14550", autoreconnect=True, force_connected=False, source_component=mavutil.mavlink.MAV_COMP_ID_PERIPHERAL)
-#    print("Connection Established")
+    if conn:
+        print("Connection Established")
 except:
     print("Could not connect")
-
+    
 # wait for the heartbeat msg to find the system ID
 while True:
     if conn.wait_heartbeat(timeout=0.5) != None:
