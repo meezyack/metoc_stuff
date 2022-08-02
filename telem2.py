@@ -33,8 +33,6 @@ ser = serial.Serial(
 # Setup MAVLink to connect on udp 127.0.0.1:14550
 try:
     conn = mavutil.mavlink_connection("udp:127.0.0.1:14550", autoreconnect=True, force_connected=False, source_component=mavutil.mavlink.MAV_COMP_ID_PERIPHERAL)
-    if conn:
-        print("Connection Established")
 except:
     print("Could not connect")
     
@@ -51,3 +49,5 @@ while 1:
     print(data)
     #writes to MAVLink as a STATUSTEXT message, encoded as ASCII
     conn.mav.statustext_send(mavutil.mavlink.MAV_SEVERITY_INFO, data.encode())
+
+f.close()
